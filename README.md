@@ -5,6 +5,7 @@ Hi this is API Automation to answer the Assignemnt 2 for number 4, to create aut
 
 # How to Use this code
 1. Download this repo as a .zip file
+
 ![image](https://user-images.githubusercontent.com/89152616/212308514-dd966981-43c1-48a9-a8f0-69410af10874.png)
 2. Upack the .zip file into folder
 3. Make sure you already installed Postman on your computer
