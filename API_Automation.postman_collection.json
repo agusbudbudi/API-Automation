@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "09453024-c88d-4bf7-9720-e3f26762a9d6",
+		"name": "API_Automation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25326312"
+	},
+	"item": [
+		{
+			"name": "API_Automation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Test status code shall be 200\r",
+							"pm.test(\"Verify status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//Test status code name is OK\r",
+							"pm.test(\"Verify Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"//Test header shall be contains Content-type\r",
+							"pm.test(\"Verify header contains Content-Type\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"//Test Total count on the endpoint\r",
+							"pm.test(\"Verify Total count\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.count).to.eql(1425);\r",
+							"});\r",
+							"//Test Response body contains string (Count, entries))\r",
+							"pm.test(\"Test Response Body contains string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"count\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"entries\");\r",
+							"});\r",
+							"\r",
+							"//Test Schema response\r",
+							"var schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"count\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"entries\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": [\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"API\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"Description\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"Auth\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"HTTPS\": {\r",
+							"              \"type\": \"boolean\"\r",
+							"            },\r",
+							"            \"Cors\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"Link\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"Category\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"API\",\r",
+							"            \"Description\",\r",
+							"            \"Auth\",\r",
+							"            \"HTTPS\",\r",
+							"            \"Cors\",\r",
+							"            \"Link\",\r",
+							"            \"Category\"\r",
+							"          ]\r",
+							"        }\r",
+							"      ]\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"count\",\r",
+							"    \"entries\"\r",
+							"  ]\r",
+							"};\r",
+							"\r",
+							"var jsonResp=pm.response.json();\r",
+							"\r",
+							"pm.test('Verify Schema response', ()=> {\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.publicapis.org/entries",
+					"protocol": "https",
+					"host": [
+						"api",
+						"publicapis",
+						"org"
+					],
+					"path": [
+						"entries"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
